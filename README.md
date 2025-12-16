@@ -1,37 +1,46 @@
-## 🕹️ 荒野亂鬥風格遊戲
+# 🕹️ Cube Escape：多人同步推箱子解謎
 
-## 這是一款使用 Unity 製作的簡易動作遊戲，玩家可操控角色利用搖桿攻擊敵人，具備方向攻擊、攻擊特效與音效,保衛金庫並擊敗全部的敵人。
+這是一款使用 **Unreal Engine 5 (UE5)** 製作的 3D 解謎遊戲，可單人與多人遊玩。推動與碰撞邏輯皆由伺服器驗證與同步。
+
+---
 
 ## 🎮 遊戲玩法
 
-- 使用虛擬搖桿控制角色移動與攻擊方向
-- 按下攻擊搖桿觸發武器攻擊
-- 攻擊時會播放斬擊特效與音效
-- 玩家擊中敵人會造成傷害，金庫血量歸零即輸
-- 避免敵人攻擊並消滅所有敵人獲得勝利
+- **核心機制：** 玩家需推動地圖上的箱子，利用箱子來觸發機關，最終逃離迷宮。
+- **機關互動：** 地圖包含壓力板閘門，玩家必須將箱子推到正確的壓板上，才能升起閘門並解鎖通路。
+- **多人同步：** 支援兩位玩家同時連線，共同協作或分工解謎。玩家之間的動作與箱子狀態保持精確同步。
+- **沉浸體驗：** 具備遊戲封面、開始選單 UI，以及背景音樂，提供完整的遊戲流程與體驗。
+
+---
+
+## 💡 技術
+
+本專案的核心目標是實踐穩定的多人連線體驗，技術細節皆以網路遊戲開發標準實作：
+
+**網路程式設計** 所有箱子的推動、移動、碰撞及機關觸發邏輯，皆由 **Server 端判斷**並廣播給所有 Client，確保同步的準確性與一致性。 |
+**移動與碰撞系統** 實作精確的**前後左右移動**邏輯；設計**碰撞判定**系統，有效解決基於座標移動時可能發生的穿牆或錯誤位移問題。 |
+**邏輯判斷** | **推動判定：** 玩家在推動前進行判定，確保只有箱子物件可被推動。 |
+|**遊戲流程與動畫** | 實作箱子被推動時的**動畫演出**；包含完整的遊戲載入流程 (封面 → 遊戲畫面)。 |
 
 ---
 
 ## 📱 支援平台
 
-遊戲支援 **Android 手機版本**！  
-玩家可透過 APK 檔安裝在 Android 裝置上進行遊玩，支援觸控虛擬搖桿操作，並針對手機橫向畫面進行遊玩。
-
-👉 前往 [Releases](https://github.com/123Ryo/PixelBrawl/releases/tag/v0.3) 頁面，下載最新 APK 安裝檔案進行體驗 📦
+遊戲支援 **Windows PC 版本**
 
 ---
 
-## 📂 專案簡介
+## 📂 專案結構簡介
 
-- `Assets/`：主要資源（腳本、場景、圖片等）
-- `Scripts/`：玩家控制、攻擊判定、特效生成腳本
-- `Scenes/`：包含主遊戲場景與封面場景
-- `Prefabs/`：角色、攻擊特效預製件
-- `README.md`：專案說明文件
+- `Content/`：主要資源（關卡地圖、藍圖、材質、動畫等）
+- `Blueprints/`：所有核心邏輯藍圖（角色控制、箱子、機關、網路同步邏輯）
+- `UMG/`：使用者介面相關資源（封面）
+- `Maps/`：遊戲關卡地圖檔案
+- `README.md`：本專案說明文件
 
 ---
 
-## License
+## 🛡️ License
 
 本專案所有原始碼與素材均為作者所有，未經明確書面授權，禁止任何形式的商業使用、重新發布、複製或改作。
 
@@ -41,65 +50,44 @@
 
 ---
 
-## 📦 技能
-
-- C# 程式設計（移動控制、攻擊判定、特效生成）
-- 音效與背景音樂整合
-- UI 設計（生命條、勝負畫面顯示）
-- 攻擊搖桿輸入偵測
-- 動畫與特效同步
-
----
-
 ## 🔧 開發環境
 
-- Unity 2021+
-- Visual Studio 或 Rider
+- **遊戲引擎：** Unreal Engine 5
+- **程式語言：** Blueprints
+- **支援平台：** Windows Build
 
 ---
 
 ## 🖼️ 遊戲畫面預覽
 
-🎮 遊戲封面
-![遊戲封面](Images/PixelBrawl遊戲封面.png)
+（請替換成您的 UE5 截圖，特別是**多人同步並排畫面**）
 
-🗡️ 選角畫面
-![角色跳躍](Images/PixelBrawl選角畫面.png)
+📦 遊戲封面與開始畫面 UI
+<img src="Images/封面.png" width="800"/>
 
-<h2>⚔️ 遊戲畫面</h2>
+🤝 多人同步遊戲畫面 (Server & Client 並排)
+<img src="Images/同步畫面.png" width="800"/>
 
-<div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 20px;">
+🧩 推箱子
+<img src="Images/推箱子1.png" width="800"/>
+<img src="Images/推箱子2.png" width="800"/>
 
-  <!-- 電腦版畫面區塊 -->
-  <div style="flex: 1; min-width: 300px;">
-    <h3>💻 電腦版畫面</h3>
-    <img src="Images/PixelBrawl遊戲畫面.png" width="100%">
-    <img src="Images/PixelBrawl遊戲畫面2.png" width="100%">
-  </div>
+🧩 場景
+<img src="Images/場景1.png" width="800"/>
+<img src="Images/場景2.png" width="800"/>
 
-  <!-- 手機版畫面區塊 -->
-  <div style="flex: 1; min-width: 300px;">
-    <h3>📱 手機版畫面</h3>
-    <img src="Images/手機版畫面.jpg" width="100%">
-    <img src="Images/手機版畫面2.jpg" width="100%">
-  </div>
-
-</div>
-
-🏆 通關畫面
-![通關](Images/PixelBrawl遊戲通關畫面.png)
-
-🏁 失敗畫面
-![失敗](Images/PixelBrawl遊戲結束畫面.png)
+🧩 壓板觸發閘門機關
+<img src="Images/壓板.png" width="800"/>
 
 ---
 
 ## 🎬 遊戲影片展示
 
-👉 [遊戲展示影片](Video/PixelBrawlDemo.mp4)
+👉 [遊戲展示影片 https://youtu.be/Eg-CpmfjNzw
+👉 [遊戲展示影片 https://youtu.be/BNNrTVQYpgk
 
 ---
 
 ## 👨‍💻 作者
 
-- GitHub 帳號 123Ryo:
+- GitHub 帳號：123Ryo
