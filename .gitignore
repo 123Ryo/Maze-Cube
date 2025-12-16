@@ -1,0 +1,31 @@
+# Unreal Engine project files to ignore
+######################################################
+# Binaries, Intermediate, Saved, DerivedDataCache (These are massive)
+Binaries/
+Build/
+DerivedDataCache/
+Intermediate/
+Saved/
+.vs/
+
+# Logs and Scratch files
+*.log
+*.pdb
+*.obj
+
+# Temporary files
+/Script/
+
+# Editor specific files
+UserSettings/
+
+# Mac/Linux files
+*.xcodeproj
+*.xcworkspace
+*.sln
+
+# Visual Studio solution (optional, depends on preference)
+*.sln
+
+# SourceTree temporary files
+.stversions
